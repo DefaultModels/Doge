@@ -1,0 +1,22 @@
+import keep_alive
+import discord
+from discord.ext import commands
+import json
+import random
+from discord import Activity, ActivityType
+import asyncio
+
+class Showerthoughts(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+    
+    @commands.command(aliases = ["showerthoughts"])
+    async def showerthought(self, ctx):
+
+      showerthoughts = "People who jog on the roads in the dark, wearing dark clothing and no lights or reflectors are a unique combination of a person who cares about their health and well-being and doesn’t care about their health and well-being.","Browsing any streaming service has really become like opening the refrigerator for snacks; you look through, leave, lower your standards, go back and repeat it until something looks adequate to you.","As a kid, having $100 and nothing else made you feel rich... as an adult, having $1000 and nothing else makes you feel broke","The invention of the wheel was no big deal. It was the invention of the axel that really got things rolling.","Being lazy is awesome but the result sucks. Working out sucks but the result is awesome","Being able to effectively communicate with people who are dumb is a very smart skill to have","Dads do want dogs, just not the extra responsibility of taking care of them because they know most of the burdens will be placed on them.","Superman's clothes are the most durable clothes in the world. They have survived everything from being in the center of the sun to travelling astronomical speeds without a scratch. It might even be more durable than Superman.","In the Cars universe, crash test laboratories could be used for capital punishment.","Kids need you to raise them to not need you.","The eye is simultaneously the creepiest, and the most beautiful part of the body.","Google spends millions of dollars to make ads customised to our taste but the only thing these ads do is piss us off.","Wishing for immorality has the potential to go horribly wong unless you specify that you no longer age","Alcohol have destroyed more families in the world than marijuana ever will.","The humblest of dogs is a hotdog, because it feeds the hand that bites it.","In hundreds of years, people will be able to look back on old versions of google street view and see what the world looked like in the 21st century.","If the world’s tallest and shortest person married each other their house would need an insane number of modifications",'If you need medication to live, you are being kept alive by science.',"You can't really blame people who used to hate science, everything they ever believed was being disproven before their eyes.","Google's 'I'm not a bot' captchas are images pulled from Google Streetview which were identified by machine learning bots to have traits which only humans can identify","Dogs are the original Roomba.","With the emergence of social media, classmates at high school reunions already know what you’ve been doing for the last 10 years","Humanity is an omnivorous species. Yet, we can feel compassion for other species that we eat for sustenance. That's actually amazing. Not hypocritical.","A song you like and listened a million times before on record/online hits totally different when it comes up in an unexpected context","Being the dependable one gets really annoying.","If their sense are heightened, blind people must have really good sex","Cinderella must have had some fucked up feet if her glass slipper didn't fit ANY other girl in the kingdom","The first handshake must have left at least one person confused and uncomfortable.","After watching the Wizard of Oz and Willy Wonka, there are a statistically abnormal amount of little people with songs already prepared for when someone dies","It's pretty convenient that Superman landed on a planet with people that are identical to Kryptonians.","We use decimal or 10 based number system most probably because we have 10 fingers and early human used fingers to keep track of numbers.","Our brains run on small amounts of electricity, but EMPs don't affect us.","You filter your tap water to drink, but put ice cubes in it that you have used tap water for","Human Resources isn’t resources for humans. It’s humans AS resources.","The more famous you become, the more creative you have to get with your password recovery questions."
+      
+      await ctx.send(f'{random.choice(showerthoughts)}')
+
+
+def setup(bot):
+    bot.add_cog(Showerthoughts(bot))
