@@ -30,6 +30,8 @@ class Beg(commands.Cog):
 
       users[str(user.id)]["wallet"] += total
 
+      bankupgrade = 10
+      users[str(user.id)]["bankmax"] += bankupgrade
       with open("mainbank.json","w") as f:
         json.dump(users,f)
     
@@ -48,8 +50,10 @@ async def open_account(user):
     users[str(user.id)] = {}
     users[str(user.id)]["wallet"] = 250
     users[str(user.id)]["multi"] = 2
+    users[str(user.id)]["bank"] = 0
+    users[str(user.id)]["bankmax"] = 100
     users[str(user.id)]["laptop"] = 0
-
+    
   with open("mainbank.json","w") as f:
     json.dump(users,f)
   return True

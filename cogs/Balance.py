@@ -17,9 +17,14 @@ class Balance(commands.Cog):
       users = await get_bank_data()
 
       wallet_amt = users[str(user.id)]["wallet"]
-      number_with_commas = "{:,}".format(wallet_amt)
+      bank_amt = users[str(user.id)]["bank"]
+      bankmax_amt = users[str(user.id)]["bankmax"]
 
-      em = discord.Embed(title = f"{ctx.author.name}'s balance",color = discord.Color.from_rgb(47, 49, 54), description = f"{number_with_commas} coins")
+      wallet_with_commas = "{:,}".format(wallet_amt)
+      bank_with_commas = "{:,}".format(bank_amt)
+      bankmax_with_commas = "{:,}".format(bankmax_amt)
+
+      em = discord.Embed(title = f"{ctx.author.name}'s balance",color = discord.Color.from_rgb(47, 49, 54), description = f"**Wallet:** {wallet_with_commas} coins \n**Bank:** {bank_with_commas} / {bankmax_with_commas} coins")
       await ctx.send(embed = em)
 
 async def open_account(user):
@@ -32,8 +37,10 @@ async def open_account(user):
     users[str(user.id)] = {}
     users[str(user.id)]["wallet"] = 250
     users[str(user.id)]["multi"] = 2
+    users[str(user.id)]["bank"] = 0
+    users[str(user.id)]["bankmax"] = 100
     users[str(user.id)]["laptop"] = 0
-
+    
   with open("mainbank.json","w") as f:
     json.dump(users,f)
   return True

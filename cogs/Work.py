@@ -23,13 +23,17 @@ class Work(commands.Cog):
       multi_amt = users[str(user.id)]["multi"]
       earnings = random.randint(1000, 1500)
       total = earnings * multi_amt
+      number_with_commas = "{:,}".format(total)
 
       randomjob = "McDonalds Cashier","UPS Driver","Teacher","Secretary","Doge developer"
 
 
-      await ctx.send(f"You worked as a {random.choice(randomjob)} for one hour and earned {total} coins!")
+      await ctx.send(f"You worked as a {random.choice(randomjob)} for one hour and earned {number_with_commas} coins!")
 
       users[str(user.id)]["wallet"] += total
+
+      bankupgrade = 10
+      users[str(user.id)]["bankmax"] += bankupgrade
 
       with open("mainbank.json","w") as f:
         json.dump(users,f)
@@ -49,8 +53,10 @@ async def open_account(user):
     users[str(user.id)] = {}
     users[str(user.id)]["wallet"] = 250
     users[str(user.id)]["multi"] = 2
+    users[str(user.id)]["bank"] = 0
+    users[str(user.id)]["bankmax"] = 100
     users[str(user.id)]["laptop"] = 0
-
+    
   with open("mainbank.json","w") as f:
     json.dump(users,f)
   return True

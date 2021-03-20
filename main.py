@@ -17,7 +17,7 @@ LIST_OF_PREMIUMS = [461301910289383436]
 
 @bot.event
 async def on_ready():
-  await bot.change_presence(activity=discord.Streaming(name = "+help - dsc.gg/dogeserver", url = "https://www.twitch.tv/defaultmodels"))
+  await bot.change_presence(activity=discord.Streaming(name = f"+help - {len(bot.guilds)} servers - dsc.gg/dogeserver", url = "https://www.twitch.tv/defaultmodels"))
   print('Bot is online')
 
 for file in os.listdir("./cogs"): 

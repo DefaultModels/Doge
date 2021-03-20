@@ -31,7 +31,7 @@ class Search(commands.Cog):
     
     
       fate = random.choice(deathrate)
-      moneyloss = users[str(user.id)]["wallet"]/2
+      moneyloss = users[str(user.id)]["wallet"] - users[str(user.id)]["wallet"]
 
       if fate == "die":
         await ctx.send(f"{random.choice(deathreason)}")
@@ -43,6 +43,9 @@ class Search(commands.Cog):
 
         users[str(user.id)]["wallet"] += total
     
+      bankupgrade = 10
+      users[str(user.id)]["bankmax"] += bankupgrade
+
       with open("mainbank.json","w") as f:
         json.dump(users,f)
 
@@ -61,6 +64,8 @@ async def open_account(user):
     users[str(user.id)] = {}
     users[str(user.id)]["wallet"] = 250
     users[str(user.id)]["multi"] = 2
+    users[str(user.id)]["bank"] = 0
+    users[str(user.id)]["bankmax"] = 100
     users[str(user.id)]["laptop"] = 0
     
   with open("mainbank.json","w") as f:

@@ -20,14 +20,28 @@ class Postmemes(commands.Cog):
       users = await get_bank_data()
     
       user = ctx.author
-    
-      earnings = random.randint(0, 200)
+      multi_amt = users[str(user.id)]["multi"]
+      earnings = random.randint(0, 100)
+      total = earnings * multi_amt
+      laptopstatus = users[str(user.id)]["laptop"]
+      event = random.randint(1, 20)
 
+      if laptopstatus >= 1:
+        if event == 20:
+          await ctx.send("Your meme was so terrible your computer broke!")
+          users[str(user.id)]["laptop"] -= 1
+        
+        else:
+          await ctx.send(f"You posted a meme and earned {total} coins from the ads")
 
-      await ctx.send(f"You posted a meme and earned {earnings} coins from the ads")
+          users[str(user.id)]["wallet"] += total
 
-      users[str(user.id)]["wallet"] += earnings
-
+        bankupgrade = 10
+        users[str(user.id)]["bankmax"] += bankupgrade
+        
+      else: 
+        await ctx.send("You need a laptop to post memes, go buy one from the shop.")
+        
       with open("mainbank.json","w") as f:
         json.dump(users,f)  
     
@@ -46,7 +60,10 @@ async def open_account(user):
     users[str(user.id)] = {}
     users[str(user.id)]["wallet"] = 250
     users[str(user.id)]["multi"] = 2
+    users[str(user.id)]["bank"] = 0
+    users[str(user.id)]["bankmax"] = 100
     users[str(user.id)]["laptop"] = 0
+
   with open("mainbank.json","w") as f:
     json.dump(users,f)
   return True

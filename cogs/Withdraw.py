@@ -1,29 +1,37 @@
-import keep_alive
 import discord
-from discord.ext import commands, tasks
+from discord.ext import commands
 import json
 import random
 from discord import Activity, ActivityType
 import asyncio
 
-bot = commands.Bot(command_prefix='+')
-
-class Multi(commands.Cog):
+class Withdraw(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(aliases = ["multi"])
-    async def multiplier(self, ctx):
-      users = await get_bank_data()
-    
+    @commands.command(aliases = ["with"])
+    async def withdraw(self, ctx, amount = 0):
+      await open_account(ctx.author)
       user = ctx.author
+      users = await get_bank_data()
 
-      multi_amt = users[str(user.id)]["multi"] - 1
-      number_with_commas = "{:,}".format(multi_amt)
-      await ctx.send(f"**{ctx.author.name}'s multiplier:** {number_with_commas}")
+      bank_amt = users[str(user.id)]["bank"]
 
+      if amount <= bank_amt:
+
+        users[str(user.id)]["bank"] -= amount
+        users[str(user.id)]["wallet"] += amount
+        number_with_commas = "{:,}".format(amount)
+
+        await ctx.send(f"{ctx.author.mention}, you successfully withdrawed {number_with_commas} coins!")
+      
+      else:
+        await ctx.send(f"{ctx.author.mention}, you don't have enough in your bank to withdraw that much!")
+      
       with open("mainbank.json","w") as f:
         json.dump(users,f)
+      
+
 
 async def open_account(user):
   
@@ -58,6 +66,6 @@ async def update_bank(user,change = 0,mode = "wallet"):
   with open("mainbank.json","w") as f:
     json.dump(users,f)
   return True
-
+  
 def setup(bot):
-    bot.add_cog(Multi(bot))
+  bot.add_cog(Withdraw(bot))
