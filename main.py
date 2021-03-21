@@ -4,7 +4,7 @@ from discord import Activity, ActivityType
 import os
 import discord
 
-bot = commands.Bot(command_prefix="+")
+bot = commands.Bot(command_prefix="+", case_insensitive=True)
 
 bot.remove_command('help')
 

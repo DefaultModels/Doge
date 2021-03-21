@@ -19,9 +19,9 @@ class Showerthoughts(commands.Cog):
         lstmeem = list(neewmeem)
         randsub = random.choice(lstmeem)
         embed = discord.Embed(title=randsub.title,
-                              description=f':arrow_up_small: {randsub.score} \n \n :speech_balloon: {len(randsub.comments)} ',
                               url=randsub.url, color=discord.Color.from_rgb(47, 49, 54))
         embed.set_image(url=randsub.url)
+        embed.set_footer(text=f'⬆️ {randsub.score} - 💬 {len(randsub.comments)} ')
         await ctx.send(embed=embed)
 
 def setup(bot):

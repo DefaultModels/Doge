@@ -9,9 +9,9 @@ class CommandsInfo(commands.Cog):
     async def help(self, ctx, category=None):
       if category == None:
         em = discord.Embed(title = "Help",color = discord.Color.from_rgb(47, 49, 54))
-        em.add_field(name = "Currency",value = "```cook, beg, farm, balance,  work, postmemes, search, slots, multiplier, prestige, deposit, withdraw```", inline=False)
+        em.add_field(name = "Currency",value = "```cook, beg, farm, balance,  work, postmemes, search, slots, multiplier, prestige, deposit, withdraw, shop, buy```", inline=False)
         em.add_field(name = "Fun",value = "```roast, pp, 8ball, fact, gayrate, dograte, showerthought, thotrate, meme```", inline=False)
-        em.add_field(name = "Other",value = "```ping```", inline=False)
+        em.add_field(name = "Other",value = "```ping, update, premium```", inline=False)
         em.add_field(name=":link: Quick Links",value="[Vote For Me](https://top.gg/bot/785160383560286240/vote) - [Invite Me](https://discord.com/oauth2/authorize?client_id=785160383560286240&scope=bot&permissions=2147483647) - [Support Server](https://discord.gg/3d6BpRHvbR) - [Premium/Donate](https://donatebot.io/checkout/794412631543906365)", inline=False)
         await ctx.send(embed = em)
         return
