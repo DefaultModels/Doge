@@ -10,7 +10,7 @@ class CommandsInfo(commands.Cog):
       if category == None:
         em = discord.Embed(title = "Help",color = discord.Color.from_rgb(47, 49, 54))
         em.add_field(name = "Currency",value = "```cook, beg, farm, balance,  work, postmemes, search, slots, multiplier, prestige, deposit, withdraw```", inline=False)
-        em.add_field(name = "Fun",value = "```roast, pp, 8ball, fact, gayrate, dograte, showerthoughts, thotrate, dogerate, meme```", inline=False)
+        em.add_field(name = "Fun",value = "```roast, pp, 8ball, fact, gayrate, dograte, showerthought, thotrate, meme```", inline=False)
         em.add_field(name = "Other",value = "```ping```", inline=False)
         em.add_field(name=":link: Quick Links",value="[Vote For Me](https://top.gg/bot/785160383560286240/vote) - [Invite Me](https://discord.com/oauth2/authorize?client_id=785160383560286240&scope=bot&permissions=2147483647) - [Support Server](https://discord.gg/3d6BpRHvbR) - [Premium/Donate](https://donatebot.io/checkout/794412631543906365)", inline=False)
         await ctx.send(embed = em)
@@ -22,6 +22,30 @@ class CommandsInfo(commands.Cog):
         await ctx.send(embed = em)
         return
 
+      if category == "withdraw":
+        em = discord.Embed(title = "Withdraw command",color = discord.Color.from_rgb(47, 49, 54),description = "Withdraw coins from your bank. ```+withdraw AMOUNT```")
+        em.add_field(name=":link: Quick Links",value="[Vote For Me](https://top.gg/bot/785160383560286240/vote) - [Invite Me](https://discord.com/oauth2/authorize?client_id=785160383560286240&scope=bot&permissions=2147483647) - [Support Server](https://discord.gg/3d6BpRHvbR) - [Premium/Donate](https://donatebot.io/checkout/794412631543906365)", inline=False)
+        await ctx.send(embed = em)
+        return
+
+      if category == "deposit":
+        em = discord.Embed(title = "Deposit command",color = discord.Color.from_rgb(47, 49, 54),description = "Deposit coins to your bank. ```+deposit AMOUNT```")
+        em.add_field(name=":link: Quick Links",value="[Vote For Me](https://top.gg/bot/785160383560286240/vote) - [Invite Me](https://discord.com/oauth2/authorize?client_id=785160383560286240&scope=bot&permissions=2147483647) - [Support Server](https://discord.gg/3d6BpRHvbR) - [Premium/Donate](https://donatebot.io/checkout/794412631543906365)", inline=False)
+        await ctx.send(embed = em)
+        return
+
+      if category == "shop":
+        em = discord.Embed(title = "Shop command",color = discord.Color.from_rgb(47, 49, 54),description = "View the shop. ```+shop```")
+        em.add_field(name=":link: Quick Links",value="[Vote For Me](https://top.gg/bot/785160383560286240/vote) - [Invite Me](https://discord.com/oauth2/authorize?client_id=785160383560286240&scope=bot&permissions=2147483647) - [Support Server](https://discord.gg/3d6BpRHvbR) - [Premium/Donate](https://donatebot.io/checkout/794412631543906365)", inline=False)
+        await ctx.send(embed = em)
+        return
+
+      if category == "buy":
+        em = discord.Embed(title = "Buy command",color = discord.Color.from_rgb(47, 49, 54),description = "Buy an item from the shop. ```+buy ITEM```")
+        em.add_field(name=":link: Quick Links",value="[Vote For Me](https://top.gg/bot/785160383560286240/vote) - [Invite Me](https://discord.com/oauth2/authorize?client_id=785160383560286240&scope=bot&permissions=2147483647) - [Support Server](https://discord.gg/3d6BpRHvbR) - [Premium/Donate](https://donatebot.io/checkout/794412631543906365)", inline=False)
+        await ctx.send(embed = em)
+        return
+
       if category == "thotrate":
         em = discord.Embed(title = "Thotrate command",color = discord.Color.from_rgb(47, 49, 54),description = "Informs you of the percent of thot in your body. ```+thotrate```")
         em.add_field(name=":link: Quick Links",value="[Vote For Me](https://top.gg/bot/785160383560286240/vote) - [Invite Me](https://discord.com/oauth2/authorize?client_id=785160383560286240&scope=bot&permissions=2147483647) - [Support Server](https://discord.gg/3d6BpRHvbR) - [Premium/Donate](https://donatebot.io/checkout/794412631543906365)", inline=False)
@@ -29,13 +53,13 @@ class CommandsInfo(commands.Cog):
         return
 
       if category == "slots":
-        em = discord.Embed(title = "Slots command",color = discord.Color.from_rgb(47, 49, 54),description = "Don't gamble kids!. ```+slots```")
+        em = discord.Embed(title = "Slots command",color = discord.Color.from_rgb(47, 49, 54),description = "Don't gamble kids!. ```+slots AMOUNT```")
         em.add_field(name=":link: Quick Links",value="[Vote For Me](https://top.gg/bot/785160383560286240/vote) - [Invite Me](https://discord.com/oauth2/authorize?client_id=785160383560286240&scope=bot&permissions=2147483647) - [Support Server](https://discord.gg/3d6BpRHvbR) - [Premium/Donate](https://donatebot.io/checkout/794412631543906365)", inline=False)
         await ctx.send(embed = em)
         return
 
-      if category == "showerthoughts":
-        em = discord.Embed(title = "Showerthougts command",color = discord.Color.from_rgb(47, 49, 54),description = "Sends things people only think of in the shower. ```+showerthoughts```")
+      if category == "showerthought":
+        em = discord.Embed(title = "Showerthougts command",color = discord.Color.from_rgb(47, 49, 54),description = "Sends things people only think of in the shower. ```+showerthought```")
         em.add_field(name=":link: Quick Links",value="[Vote For Me](https://top.gg/bot/785160383560286240/vote) - [Invite Me](https://discord.com/oauth2/authorize?client_id=785160383560286240&scope=bot&permissions=2147483647) - [Support Server](https://discord.gg/3d6BpRHvbR) - [Premium/Donate](https://donatebot.io/checkout/794412631543906365)", inline=False)
         await ctx.send(embed = em)
         return
@@ -65,7 +89,7 @@ class CommandsInfo(commands.Cog):
         return
 
       if category == "postmemes":
-        em = discord.Embed(title = "Postmemes command",color = discord.Color.from_rgb(47, 49, 54),description = "Post memes on reddit for ad money. ```+postmemes```")
+        em = discord.Embed(title = "Postmemes command",color = discord.Color.from_rgb(47, 49, 54),description = "Post memes on reddit for ad money. Computer required. ```+postmemes```")
         em.add_field(name=":link: Quick Links",value="[Vote For Me](https://top.gg/bot/785160383560286240/vote) - [Invite Me](https://discord.com/oauth2/authorize?client_id=785160383560286240&scope=bot&permissions=2147483647) - [Support Server](https://discord.gg/3d6BpRHvbR) - [Premium/Donate](https://donatebot.io/checkout/794412631543906365)", inline=False)
         await ctx.send(embed = em)
         return
@@ -102,12 +126,6 @@ class CommandsInfo(commands.Cog):
 
       if category == "dograte":
         em = discord.Embed(title = "Dograte command",color = discord.Color.from_rgb(47, 49, 54),description = "Informs you of the percent of dog in your body. ```+dograte```")
-        em.add_field(name=":link: Quick Links",value="[Vote For Me](https://top.gg/bot/785160383560286240/vote) - [Invite Me](https://discord.com/oauth2/authorize?client_id=785160383560286240&scope=bot&permissions=2147483647) - [Support Server](https://discord.gg/3d6BpRHvbR) - [Premium/Donate](https://donatebot.io/checkout/794412631543906365)", inline=False)
-        await ctx.send(embed = em)
-        return
-
-      if category == "dogerate":
-        em = discord.Embed(title = "Dogerate command",color = discord.Color.from_rgb(47, 49, 54),description = "Informs you of the percent of doge in your body. ```+dogerate```")
         em.add_field(name=":link: Quick Links",value="[Vote For Me](https://top.gg/bot/785160383560286240/vote) - [Invite Me](https://discord.com/oauth2/authorize?client_id=785160383560286240&scope=bot&permissions=2147483647) - [Support Server](https://discord.gg/3d6BpRHvbR) - [Premium/Donate](https://donatebot.io/checkout/794412631543906365)", inline=False)
         await ctx.send(embed = em)
         return

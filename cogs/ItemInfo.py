@@ -19,7 +19,7 @@ class ItemInfo(commands.Cog):
       if category == None:
         info = "To buy an item use: buy ID", "To get more info on an item use: shop ID"
         em = discord.Embed(title = "Shop", color = discord.Color.from_rgb(47, 49, 54))
-        em.add_field(name = "Shop Items", value = "\n<:laptop:822937302568534047> **Laptop** — [2000 coins](https://www.youtube.com/watch?v=dQw4w9WgXcQ) \nID: `laptop`", inline=False)
+        em.add_field(name = "Shop Items", value = "\n<:laptop:822951966975590421> **Laptop** — [2000 coins](https://www.youtube.com/watch?v=dQw4w9WgXcQ) \nID: `laptop`", inline=False)
         em.set_footer(text=f"{random.choice(info)}")
 
         await ctx.send(embed = em)
