@@ -1,17 +1,23 @@
 import discord
 from discord.ext import commands
 
-class CommandsInfo(commands.Cog):
+class Help(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command()
     async def help(self, ctx, category=None):
       if category == None:
-        em = discord.Embed(title = "Help",color = discord.Color.from_rgb(47, 49, 54))
-        em.add_field(name = "Currency",value = "```cook, beg, farm, balance,  work, postmemes, search, slots, multiplier, prestige, deposit, withdraw, shop, buy```", inline=False)
+        em = discord.Embed(title = "Help",color = discord.Color.from_rgb(47, 49, 54), description = "<a:discord_loading:745047586552938516> Join the support/community server for giveaways and news! Click the link in quick links to join. <a:discord_loading:745047586552938516>")
+        em.add_field(name = "Currency",value = "```cook, beg, farm, balance,  work, postmemes, search, slots, multiplier, prestige, deposit, withdraw, shop, buy, rob```", inline=False)
         em.add_field(name = "Fun",value = "```roast, pp, 8ball, fact, gayrate, dograte, showerthought, thotrate, meme```", inline=False)
         em.add_field(name = "Other",value = "```ping, update, premium```", inline=False)
+        em.add_field(name=":link: Quick Links",value="[Vote For Me](https://top.gg/bot/785160383560286240/vote) - [Invite Me](https://discord.com/oauth2/authorize?client_id=785160383560286240&scope=bot&permissions=2147483647) - [Support Server](https://discord.gg/3d6BpRHvbR) - [Premium/Donate](https://donatebot.io/checkout/794412631543906365)", inline=False)
+        await ctx.send(embed = em)
+        return
+
+      if category == "rob":
+        em = discord.Embed(title = "Rob command",color = discord.Color.from_rgb(47, 49, 54),description = "Rob another players wallet for their coins. ```+rob MENTION```")
         em.add_field(name=":link: Quick Links",value="[Vote For Me](https://top.gg/bot/785160383560286240/vote) - [Invite Me](https://discord.com/oauth2/authorize?client_id=785160383560286240&scope=bot&permissions=2147483647) - [Support Server](https://discord.gg/3d6BpRHvbR) - [Premium/Donate](https://donatebot.io/checkout/794412631543906365)", inline=False)
         await ctx.send(embed = em)
         return
@@ -160,4 +166,4 @@ class CommandsInfo(commands.Cog):
         return        
        
 def setup(bot):
-    bot.add_cog(CommandsInfo(bot))
+    bot.add_cog(Help(bot))

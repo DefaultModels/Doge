@@ -11,6 +11,7 @@ Flask = "^1.1.2"
 player = "^0.6.1"
 pydealer = "^1.4.0"
 praw = "^7.1.0"
+dblpy = "^0.4.0"
 
 [tool.poetry.dev-dependencies]
 

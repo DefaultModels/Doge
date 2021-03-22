@@ -8,7 +8,7 @@ reddite = praw.Reddit(client_id='EvLPVk7GCoVgrQ',
                       user_agent='somerandom',
                       username='pyUsagi')
 
-class Showerthoughts(commands.Cog):
+class Showerthought(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
@@ -25,4 +25,4 @@ class Showerthoughts(commands.Cog):
         await ctx.send(embed=embed)
 
 def setup(bot):
-    bot.add_cog(Showerthoughts(bot))
+    bot.add_cog(Showerthought(bot))

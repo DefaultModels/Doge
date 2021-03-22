@@ -13,7 +13,6 @@ class Gig(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    @commands.has_any_role(796446418730090569)
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def gig(self, ctx):
       await open_account(ctx.author)
@@ -21,20 +20,24 @@ class Gig(commands.Cog):
       users = await get_bank_data()
     
       user = ctx.author
-
+      premium = users[str(user.id)]["premium"]
       multi_amt = users[str(user.id)]["multi"]
 
       earnings = random.randint(1, 50)
       total = earnings * multi_amt
 
-      await ctx.send(f"You got {total} coins!")
+      if premium == 1:
+        await ctx.send(f"You got {total} coins!")
 
-      users[str(user.id)]["wallet"] += total
+        users[str(user.id)]["wallet"] += total
 
-      bankupgrade = 10
-      users[str(user.id)]["bankmax"] += bankupgrade
-      with open("mainbank.json","w") as f:
-        json.dump(users,f)
+        bankupgrade = 10
+        users[str(user.id)]["bankmax"] += bankupgrade
+        with open("mainbank.json","w") as f:
+          json.dump(users,f)
+        
+      else:
+        await ctx.send("You need premium to use this command!")
     
     @gig.error
     async def gig_cooldown(self, ctx, error):
@@ -54,6 +57,9 @@ async def open_account(user):
     users[str(user.id)]["bank"] = 0
     users[str(user.id)]["bankmax"] = 100
     users[str(user.id)]["laptop"] = 0
+    users[str(user.id)]["premium"] = 0 
+    users[str(user.id)]["gun"] = 0 
+    
     
   with open("mainbank.json","w") as f:
     json.dump(users,f)

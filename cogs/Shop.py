@@ -3,7 +3,7 @@ from discord.ext import commands
 import json
 import random
 
-class ItemInfo(commands.Cog):
+class Shop(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -18,8 +18,7 @@ class ItemInfo(commands.Cog):
         
       if category == None:
         info = "To buy an item use: buy ID", "To get more info on an item use: shop ID"
-        em = discord.Embed(title = "Shop", color = discord.Color.from_rgb(47, 49, 54))
-        em.add_field(name = "Shop Items", value = "\n<:laptop:822951966975590421> **Laptop** — [2000 coins](https://www.youtube.com/watch?v=dQw4w9WgXcQ) \nID: `laptop`", inline=False)
+        em = discord.Embed(title = "Shop", color = discord.Color.from_rgb(47, 49, 54), description = "<:laptop:822951966975590421> **Laptop** — [2000 coins](https://www.youtube.com/watch?v=dQw4w9WgXcQ) \nID: `laptop`", inline=False)
         em.set_footer(text=f"{random.choice(info)}")
 
         await ctx.send(embed = em)
@@ -29,8 +28,8 @@ class ItemInfo(commands.Cog):
       if category == "laptop":
         laptop_amt = users[str(user.id)]["laptop"]
         em = discord.Embed(title = f"Laptop ({laptop_amt} owned)",color = discord.Color.from_rgb(47, 49, 54),description = "Allows you to postmemes on reddit for coins. ```+postmemes```")
-        em.add_field(name="Price:", value="`2000 coins`")
-        em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/822913208443994152/1447_laptop.png")
+        em.add_field(name="Value:", value="Buy: 2000 coins \nSell: This item is currently not sellable")
+        em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/823539841089404988/1447_laptop.png")
 
         await ctx.send(embed = em)
         return
@@ -50,6 +49,9 @@ async def open_account(user):
     users[str(user.id)]["bank"] = 0
     users[str(user.id)]["bankmax"] = 100
     users[str(user.id)]["laptop"] = 0
+    users[str(user.id)]["premium"] = 0 
+    users[str(user.id)]["gun"] = 0 
+    
 
   with open("mainbank.json","w") as f:
     json.dump(users,f)
@@ -72,4 +74,4 @@ async def update_bank(user,change = 0,mode = "wallet"):
   return True
 
 def setup(bot):
-    bot.add_cog(ItemInfo(bot))
+    bot.add_cog(Shop(bot))

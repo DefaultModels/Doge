@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import json
 
-class BuyItems(commands.Cog):
+class Buy(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -20,7 +20,7 @@ class BuyItems(commands.Cog):
       if category == "laptop":
         if wallet_amt >= 2000:
           em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = "You bought 1 laptop and you can now postmemes on reddit for coins. ```+postmemes```")
-          em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/822913208443994152/1447_laptop.png")
+          em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/823539841089404988/1447_laptop.png")
 
           users[str(user.id)]["laptop"] += 1
           users[str(user.id)]["wallet"] -= 2000
@@ -50,6 +50,9 @@ async def open_account(user):
     users[str(user.id)]["bank"] = 0
     users[str(user.id)]["bankmax"] = 100
     users[str(user.id)]["laptop"] = 0
+    users[str(user.id)]["premium"] = 0 
+    users[str(user.id)]["gun"] = 0 
+    
 
   with open("mainbank.json","w") as f:
     json.dump(users,f)
@@ -72,4 +75,4 @@ async def update_bank(user,change = 0,mode = "wallet"):
   return True
 
 def setup(bot):
-    bot.add_cog(BuyItems(bot))
+    bot.add_cog(Buy(bot))
