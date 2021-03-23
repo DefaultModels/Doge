@@ -18,30 +18,34 @@ class Rob(commands.Cog):
       wallet_amt = users[str(user.id)]["wallet"]
       target_premium = users[str(mention.id)]["premium"]
       payout = random.randint(1000, target_wallet_amt)
+      gun = users[str(user.id)]["gun"]
 
-      if target_wallet_amt >= 1000:
-        if target_premium == 1:
-          await ctx.send("Looks like the person you tried to rob has a shield enabled.")
+      if gun >= 1:
+        if target_wallet_amt >= 1000:
+          if target_premium == 1:
+            await ctx.send("Looks like the person you tried to rob has a shield enabled.")
+
+          else:
+            if event == 1:
+              await ctx.send(f"{ctx.author.mention}, you robbed {mention} for {payout} coins")
+
+              users[str(user.id)]["wallet"] += payout
+              users[str(mention.id)]["wallet"] -= payout
+
+            elif event == 2:
+              loss = payout * 1.5
+              await ctx.send(f"{ctx.author.mention}, you were caught by {mention} and had to pay a {loss} coin fine.")
+
+              users[str(user.id)]["wallet"] -= loss
+              users[str(mention.id)]["wallet"] += loss
+
+            with open("mainbank.json","w") as f:
+              json.dump(users,f)
 
         else:
-          if event == 1:
-            await ctx.send(f"{ctx.author.mention}, you robbed {mention} for {payout} coins")
-
-            users[str(user.id)]["wallet"] += payout
-            users[str(mention.id)]["wallet"] -= payout
-
-          elif event == 2:
-            loss = payout * 2
-            await ctx.send(f"{ctx.author.mention}, you were caught by {mention} and had to pay a {loss} coin fine.")
-
-            users[str(user.id)]["wallet"] -= loss
-            users[str(mention.id)]["wallet"] += loss
-
-          with open("mainbank.json","w") as f:
-            json.dump(users,f)
-
+          await ctx.send("The player you mentioned has less than 1000 coins in their wallet, you cannot rob them.")
       else:
-        await ctx.send("The player you mentioned has less than 1000 coins in their wallet, you cannot rob them.")
+        await ctx.send("You need to own a gun to rob someone!")
     
     @rob.error
     async def rob_cooldown(self, ctx, error):

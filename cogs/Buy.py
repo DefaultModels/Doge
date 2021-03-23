@@ -34,6 +34,24 @@ class Buy(commands.Cog):
         else:
           await ctx.send("You don't have enough money to buy a laptop!")
         return
+
+      if category == "gun":
+        if wallet_amt >= 5000:
+          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = "You bought 1 gun and you can now rob other players for coins. ```+rob MENTION```")
+          em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/823900235649777684/1426_pistol.png")
+
+          users[str(user.id)]["gun"] += 1
+          users[str(user.id)]["wallet"] -= 5000
+
+          await ctx.send(embed = em)
+
+          with open("mainbank.json","w") as f:
+            json.dump(users,f)
+          
+        
+        else:
+          await ctx.send("You don't have enough money to buy a gun!")
+        return
         
     
 

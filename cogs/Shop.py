@@ -18,7 +18,7 @@ class Shop(commands.Cog):
         
       if category == None:
         info = "To buy an item use: buy ID", "To get more info on an item use: shop ID"
-        em = discord.Embed(title = "Shop", color = discord.Color.from_rgb(47, 49, 54), description = "<:laptop:822951966975590421> **Laptop** — [2000 coins](https://www.youtube.com/watch?v=dQw4w9WgXcQ) \nID: `laptop`", inline=False)
+        em = discord.Embed(title = "Shop", color = discord.Color.from_rgb(47, 49, 54), description = "<:laptop:822951966975590421> **Laptop** — [2000 coins](https://www.youtube.com/watch?v=dQw4w9WgXcQ) \nID: `laptop` \n \n<:gun:823900537291800626> **Gun** — [5000 coins](https://www.youtube.com/watch?v=dQw4w9WgXcQ) \n ID: `gun`", inline=False)
         em.set_footer(text=f"{random.choice(info)}")
 
         await ctx.send(embed = em)
@@ -34,6 +34,14 @@ class Shop(commands.Cog):
         await ctx.send(embed = em)
         return
 
+      if category == "gun":
+        gun_amt = users[str(user.id)]["gun"]
+        em = discord.Embed(title = f"Gun ({gun_amt} owned)",color = discord.Color.from_rgb(47, 49, 54),description = "Allows you to rob other players of their wallets. ```+rob MENTION```")
+        em.add_field(name="Value:", value="Buy: 5000 coins \nSell: This item is currently not sellable")
+        em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/823900235649777684/1426_pistol.png")
+
+        await ctx.send(embed = em)
+        return
     
 
 async def open_account(user):
