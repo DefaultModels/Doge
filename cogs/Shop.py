@@ -28,7 +28,7 @@ class Shop(commands.Cog):
       if category == "laptop":
         laptop_amt = users[str(user.id)]["laptop"]
         em = discord.Embed(title = f"Laptop ({laptop_amt} owned)",color = discord.Color.from_rgb(47, 49, 54),description = "Allows you to postmemes on reddit for coins. ```+postmemes```")
-        em.add_field(name="Value:", value="Buy: 2000 coins \nSell: This item is currently not sellable")
+        em.add_field(name="Value:", value="Buy: 2000 coins \nSell: 1000 coins")
         em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/823539841089404988/1447_laptop.png")
 
         await ctx.send(embed = em)
@@ -37,7 +37,7 @@ class Shop(commands.Cog):
       if category == "gun":
         gun_amt = users[str(user.id)]["gun"]
         em = discord.Embed(title = f"Gun ({gun_amt} owned)",color = discord.Color.from_rgb(47, 49, 54),description = "Allows you to rob other players of their wallets. ```+rob MENTION```")
-        em.add_field(name="Value:", value="Buy: 5000 coins \nSell: This item is currently not sellable")
+        em.add_field(name="Value:", value="Buy: 5000 coins \nSell: 2500")
         em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/823900235649777684/1426_pistol.png")
 
         await ctx.send(embed = em)
@@ -59,6 +59,10 @@ async def open_account(user):
     users[str(user.id)]["laptop"] = 0
     users[str(user.id)]["premium"] = 0 
     users[str(user.id)]["gun"] = 0 
+    users[str(user.id)]["btc"] = 0 
+    users[str(user.id)]["apple"] = 0     
+    users[str(user.id)]["android"] = 0 
+ 
     
 
   with open("mainbank.json","w") as f:

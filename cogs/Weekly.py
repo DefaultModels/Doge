@@ -7,36 +7,41 @@ import asyncio
 
 bot = commands.Bot(command_prefix='+')
 
-class Farm(commands.Cog):
+class Weekly(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command()
-    @commands.cooldown(1, 45, commands.BucketType.user)
-    async def farm(self, ctx):
+    @commands.cooldown(1, 604800, commands.BucketType.user)
+    async def weekly(self, ctx):
       await open_account(ctx.author)
 
       users = await get_bank_data()
     
       user = ctx.author
+      premium = users[str(user.id)]["premium"]
       multi_amt = users[str(user.id)]["multi"]
-      earnings = random.randint(1, 50)
-      total = earnings * multi_amt
 
-      await ctx.send(f"You stole the eggs from the chickens! You sold the eggs for {total} coins!")
+      earnings = 20000
+      total = earnings
 
-      users[str(user.id)]["wallet"] += total
+      if premium == 1:
+        await ctx.send(f"You got {total} coins! Come back in 1 week for more!")
 
-      bankupgrade = 10
-      users[str(user.id)]["bankmax"] += bankupgrade
+        users[str(user.id)]["wallet"] += total
 
-      with open("mainbank.json","w") as f:
-        json.dump(users,f)
+        bankupgrade = 10
+        users[str(user.id)]["bankmax"] += bankupgrade
+        with open("mainbank.json","w") as f:
+          json.dump(users,f)
+        
+      else:
+        await ctx.send("You need premium to use this command!")
     
-    @farm.error
-    async def farm_cooldown(self, ctx, error):
+    @weekly.error
+    async def weekly_cooldown(self, ctx, error):
       if isinstance(error, commands.CommandOnCooldown):
-        await ctx.send("The farm is curently closed. The default cooldown for this coomand is `45s`.")
+        await ctx.send("Chill, I'm not made of money. The default cooldown for this coomand is `1w`.")
 
 async def open_account(user):
   
@@ -53,7 +58,10 @@ async def open_account(user):
     users[str(user.id)]["laptop"] = 0
     users[str(user.id)]["premium"] = 0 
     users[str(user.id)]["gun"] = 0 
-    users[str(user.id)]["btc"] = 0
+    users[str(user.id)]["btc"] = 0 
+    users[str(user.id)]["apple"] = 0     
+    users[str(user.id)]["android"] = 0 
+ 
     
     
   with open("mainbank.json","w") as f:
@@ -77,4 +85,4 @@ async def update_bank(user,change = 0,mode = "wallet"):
   return True
 
 def setup(bot):
-    bot.add_cog(Farm(bot))
+    bot.add_cog(Weekly(bot))

@@ -3,28 +3,31 @@ from discord.ext import commands
 import json
 import main
 
-class Buy(commands.Cog):
+class Sell(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command()
-    async def buy(self, ctx, category=None, amount=1):
+    async def sell(self, ctx, category=None, amount=1):
       await open_account(ctx.author)
       users = await get_bank_data()
       user = ctx.author
-      wallet_amt = users[str(user.id)]["wallet"]
-
+      laptop_amt = users[str(user.id)]["laptop"]
+      gun_amt = users[str(user.id)]["gun"]
+      btc_amt = users[str(user.id)]["btc"]
+      apple_amt = users[str(user.id)]["apple"]
+      android_amt = users[str(user.id)]["android"]
       if category == None:
         await ctx.send("Please specify the item you would like to buy.")
         return
 
       if category == "laptop":
-        if wallet_amt >= amount * 2000:
-          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {amount} laptops and you can now postmemes on reddit for coins. ```+postmemes```")
+        if laptop_amt >= amount:
+          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You sold {amount} laptop for {amount * 1000} coins.")
           em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/823539841089404988/1447_laptop.png")
 
-          users[str(user.id)]["laptop"] += amount
-          users[str(user.id)]["wallet"] -= amount * 2000
+          users[str(user.id)]["laptop"] -= amount
+          users[str(user.id)]["wallet"] += amount * 1000
 
           await ctx.send(embed = em)
 
@@ -33,16 +36,16 @@ class Buy(commands.Cog):
           
         
         else:
-          await ctx.send(f"You don't have enough money to buy {amount} laptops!")
+          await ctx.send("You don't have that many laptops, you can't sell them!")
         return
 
       if category == "gun":
-        if wallet_amt >= amount * 5000:
-          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {amount} guns and you can now rob other players for coins. ```+rob MENTION```")
+        if gun_amt >= amount:
+          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You sold {amount} guns for {amount * 2500} coins.")
           em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/823900235649777684/1426_pistol.png")
 
-          users[str(user.id)]["gun"] += amount
-          users[str(user.id)]["wallet"] -= amount * 5000
+          users[str(user.id)]["gun"] -= amount
+          users[str(user.id)]["wallet"] += amount * 2500
 
           await ctx.send(embed = em)
 
@@ -51,16 +54,16 @@ class Buy(commands.Cog):
           
         
         else:
-          await ctx.send(f"You don't have enough money to buy {amount} guns!")
+          await ctx.send("You don't have that many guns, you can't sell them!")
         return
-        
+
       if category == "btc":
-        if wallet_amt >= amount * main.bitcoinstock:
-          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {amount} bitcoin for {amount * main.bitcoinstock} coins, sell on the stock market when you see profit. ```+sell btc```")
+        if btc_amt >= amount:
+          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You sold {amount} bitcoin for {amount * main.bitcoinstock} coins.")
           em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/823985123736551515/Bitcoin.png")
 
-          users[str(user.id)]["btc"] += amount
-          users[str(user.id)]["wallet"] -= amount * main.bitcoinstock
+          users[str(user.id)]["btc"] -= amount
+          users[str(user.id)]["wallet"] += amount * main.bitcoinstock
 
           await ctx.send(embed = em)
 
@@ -69,16 +72,16 @@ class Buy(commands.Cog):
           
         
         else:
-          await ctx.send("You don't have enough money to buy that much bitcoin with the current stock prices!")
-        return   
-
+          await ctx.send("You don't have that many bitcoin, you can't sell them!")
+        return
+    
       if category == "apple":
-        if wallet_amt >= amount * main.applestock:
-          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {amount} apple stock for {amount * main.applestock} coins, sell it on the stock market when you see profit. ```+sell apple```")
+        if apple_amt >= amount:
+          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You sold {amount} apple stock for {amount * main.applestock} coins.")
           em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/824035108972658728/1515_phone_with_apple.png")
 
-          users[str(user.id)]["apple"] += amount
-          users[str(user.id)]["wallet"] -= amount * main.applestock
+          users[str(user.id)]["apple"] -=amount
+          users[str(user.id)]["wallet"] += amount * main.applestock
 
           await ctx.send(embed = em)
 
@@ -87,16 +90,16 @@ class Buy(commands.Cog):
           
         
         else:
-          await ctx.send("You don't have enough money to buy that much apple stock with the current stock prices!")
-        return   
+          await ctx.send("You don't have that many apple stock, you can't sell them!")
+        return
 
       if category == "android":
-        if wallet_amt >= amount * main.androidstock:
-          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {amount} android stock for {amount * main.androidstock} coins, sell it on the stock market when you see profit. ```+sell android```")
+        if android_amt >= amount:
+          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You sold {amount} android stock for {amount * main.androidstock} coins.")
           em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/824035104258261022/1546_phone_with_android.png")
 
-          users[str(user.id)]["android"] += amount
-          users[str(user.id)]["wallet"] -= amount * main.androidstock
+          users[str(user.id)]["android"] -= amount
+          users[str(user.id)]["wallet"] += amount * main.androidstock
 
           await ctx.send(embed = em)
 
@@ -105,8 +108,9 @@ class Buy(commands.Cog):
           
         
         else:
-          await ctx.send("You don't have enough money to buy that much android stocks with the current stock prices!")
-        return   
+          await ctx.send("You don't have that many android stocks, you can't sell them!")
+        return
+      
 async def open_account(user):
   
   users = await get_bank_data()
@@ -125,9 +129,7 @@ async def open_account(user):
     users[str(user.id)]["btc"] = 0 
     users[str(user.id)]["apple"] = 0     
     users[str(user.id)]["android"] = 0 
-    users[str(user.id)]["apple"] = 0     
-    users[str(user.id)]["android"] = 0 
- 
+    
 
   with open("mainbank.json","w") as f:
     json.dump(users,f)
@@ -150,4 +152,4 @@ async def update_bank(user,change = 0,mode = "wallet"):
   return True
 
 def setup(bot):
-    bot.add_cog(Buy(bot))
+    bot.add_cog(Sell(bot))

@@ -1,12 +1,9 @@
-import keep_alive
 import discord
 from discord.ext import commands, tasks
 import json
 import random
 from discord import Activity, ActivityType
 import asyncio
-
-bot = commands.Bot(command_prefix='+')
 
 class Work(commands.Cog):
     def __init__(self, bot):
@@ -58,6 +55,10 @@ async def open_account(user):
     users[str(user.id)]["laptop"] = 0
     users[str(user.id)]["premium"] = 0 
     users[str(user.id)]["gun"] = 0 
+    users[str(user.id)]["btc"] = 0 
+    users[str(user.id)]["apple"] = 0     
+    users[str(user.id)]["android"] = 0 
+ 
     
     
   with open("mainbank.json","w") as f:

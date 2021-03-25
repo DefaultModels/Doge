@@ -21,29 +21,32 @@ class Rob(commands.Cog):
       gun = users[str(user.id)]["gun"]
 
       if gun >= 1:
-        if target_wallet_amt >= 1000:
-          if target_premium == 1:
-            await ctx.send("Looks like the person you tried to rob has a shield enabled.")
+        if wallet_amt >= 2000:
+          if target_wallet_amt >= 1000:
+            if target_premium == 1:
+              await ctx.send("Looks like the person you tried to rob has a shield enabled.")
+
+            else:
+              if event == 1:
+                await ctx.send(f"{ctx.author.mention}, you robbed {mention} for {payout} coins")
+
+                users[str(user.id)]["wallet"] += payout
+                users[str(mention.id)]["wallet"] -= payout
+
+              elif event == 2:
+                loss = payout
+                await ctx.send(f"{ctx.author.mention}, you were caught by {mention} and had to pay a {loss} coin fine.")
+
+                users[str(user.id)]["wallet"] -= loss
+                users[str(mention.id)]["wallet"] += loss
+
+              with open("mainbank.json","w") as f:
+                json.dump(users,f)
 
           else:
-            if event == 1:
-              await ctx.send(f"{ctx.author.mention}, you robbed {mention} for {payout} coins")
-
-              users[str(user.id)]["wallet"] += payout
-              users[str(mention.id)]["wallet"] -= payout
-
-            elif event == 2:
-              loss = payout * 1.5
-              await ctx.send(f"{ctx.author.mention}, you were caught by {mention} and had to pay a {loss} coin fine.")
-
-              users[str(user.id)]["wallet"] -= loss
-              users[str(mention.id)]["wallet"] += loss
-
-            with open("mainbank.json","w") as f:
-              json.dump(users,f)
-
+            await ctx.send("The player you mentioned has less than 1000 coins in their wallet, you cannot rob them.")
         else:
-          await ctx.send("The player you mentioned has less than 1000 coins in their wallet, you cannot rob them.")
+          await ctx.send("You need to have atleast 2000 coins in your wallet to rob someone!")
       else:
         await ctx.send("You need to own a gun to rob someone!")
     
@@ -68,6 +71,10 @@ async def open_account(user):
     users[str(user.id)]["laptop"] = 0
     users[str(user.id)]["premium"] = 0 
     users[str(user.id)]["gun"] = 0 
+    users[str(user.id)]["btc"] = 0 
+    users[str(user.id)]["apple"] = 0     
+    users[str(user.id)]["android"] = 0 
+ 
     
 
   with open("mainbank.json","w") as f:
