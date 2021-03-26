@@ -49,21 +49,22 @@ async def unload(ctx, *, name: str):
 
 # -------------------------------------------------
 
-
 async def stocks():
 	while True:
 		channel = bot.get_channel(823969869095370852)
 		global bitcoinstock
 		global applestock
 		global androidstock
-		bitcoinstock = random.randint(500, 25000)
-		applestock = random.randint(500, 25000)
-		androidstock = random.randint(500, 25000)
+
+		bitcoinstock = random.randint(40000, 60000)
+		applestock = random.randint(10000, 20000)
+		androidstock = random.randint(10000, 20000)
+
 		BotMessage = await channel.send(
 		    content=
 		    f"<:Bitcoin:823980829914693652> Bitcoin Stock: {bitcoinstock} \n       ID: `btc` \n \n<:Android:824035438078853130> Android Stock: {androidstock} \n       ID: `android` \n \n<:Apple:824035438141505596> Apple: {applestock} \n       ID: `apple`"
 		)
-		await asyncio.sleep(30)
+		await asyncio.sleep(60)
 		await BotMessage.delete()
 
 
@@ -76,4 +77,4 @@ async def on_ready():
 	await stocks()
 
 
-bot.run('Nzg1MTYwMzgzNTYwMjg2MjQw.X8zzlw.1hFbOSTspGSltPRdhIQOHq8lcKw')
+bot.run('Nzg1MTYwMzgzNTYwMjg2MjQw.X8zzlw.X5UmHLNfZ2p1csjKg-4AwFvNUmY')
