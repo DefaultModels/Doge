@@ -77,4 +77,5 @@ async def on_ready():
 	await stocks()
 
 
-bot.run('Nzg1MTYwMzgzNTYwMjg2MjQw.X8zzlw.X5UmHLNfZ2p1csjKg-4AwFvNUmY')
+token = os.environ['token']
+bot.run(token)
