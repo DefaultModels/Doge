@@ -18,12 +18,29 @@ class Shop(commands.Cog):
         
       if category == None:
         info = "To buy an item use: buy ID", "To get more info on an item use: shop ID"
-        em = discord.Embed(title = "Shop", color = discord.Color.from_rgb(47, 49, 54), description = "<:laptop:822951966975590421> **Laptop** — [2000 coins](https://www.youtube.com/watch?v=dQw4w9WgXcQ) \nID: `laptop` \n \n<:gun:823900537291800626> **Gun** — [5000 coins](https://www.youtube.com/watch?v=dQw4w9WgXcQ) \n ID: `gun`", inline=False)
+        em = discord.Embed(title = "Shop", color = discord.Color.from_rgb(47, 49, 54), description = "<:laptop:822951966975590421> **Laptop** — [2,000 coins](https://www.youtube.com/watch?v=dQw4w9WgXcQ) \nID: `laptop` \n \n<:gun:823900537291800626> **Gun** — [5,000 coins](https://www.youtube.com/watch?v=dQw4w9WgXcQ) \n ID: `gun` \n \n<:DogeCoin:826907590650363954> **Doge Coin** — [500,000 coins](https://www.youtube.com/watch?v=dQw4w9WgXcQ) \nID: `coin` \n \n<:DogeMedal:826907545716392037> **Doge Medal** — [1,000,000 coins](https://www.youtube.com/watch?v=dQw4w9WgXcQ) \n ID: `medal`", inline=False)
         em.set_footer(text=f"{random.choice(info)}")
 
         await ctx.send(embed = em)
         return
 
+      if category == "medal":
+        medal_amt = users[str(user.id)]["medal"]
+        em = discord.Embed(title = f"Doge Medal ({medal_amt} owned)",color = discord.Color.from_rgb(47, 49, 54),description = "Used to mega flex on poor players. That's it.")
+        em.add_field(name="Value:", value="Buy: 1,000,000 coins \nSell: Not sellable")
+        em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/826907664335241216/Untitled_design__2_-removebg-preview.png")
+
+        await ctx.send(embed = em)
+        return
+
+      if category == "coin":
+        medal_amt = users[str(user.id)]["coin"]
+        em = discord.Embed(title = f"Doge Coin ({medal_amt} owned)",color = discord.Color.from_rgb(47, 49, 54),description = "Used to flex on poor players. That's it.")
+        em.add_field(name="Value:", value="Buy: 500,000 coins \nSell: Not sellable")
+        em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/826907667909967892/Untitled_design__3_-removebg-preview.png")
+
+        await ctx.send(embed = em)
+        return
 
       if category == "laptop":
         laptop_amt = users[str(user.id)]["laptop"]
@@ -61,7 +78,9 @@ async def open_account(user):
     users[str(user.id)]["gun"] = 0 
     users[str(user.id)]["btc"] = 0 
     users[str(user.id)]["apple"] = 0     
-    users[str(user.id)]["android"] = 0 
+    users[str(user.id)]["android"] = 0
+    users[str(user.id)]["medal"] = 0
+    users[str(user.id)]["coin"] = 0
  
     
 

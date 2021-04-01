@@ -54,6 +54,10 @@ async def open_account(user):
     users[str(user.id)]["premium"] = 0 
     users[str(user.id)]["gun"] = 0 
     users[str(user.id)]["btc"] = 0
+    users[str(user.id)]["android"] = 0
+    users[str(user.id)]["apple"] = 0
+    users[str(user.id)]["medal"] = 0
+    users[str(user.id)]["coin"] = 0
     
     
   with open("mainbank.json","w") as f:

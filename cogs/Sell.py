@@ -57,10 +57,10 @@ class Sell(commands.Cog):
           await ctx.send("You don't have that many guns, you can't sell them!")
         return
 
-      if category == "btc":
+      if category == "doge":
         if btc_amt >= amount:
           em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You sold {amount} bitcoin for {amount * main.bitcoinstock} coins.")
-          em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/823985123736551515/Bitcoin.png")
+          em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/827206454648897576/dogecoin-cryptocurrency-dash-digital-currency-doge-removebg-preview.png")
 
           users[str(user.id)]["btc"] -= amount
           users[str(user.id)]["wallet"] += amount * main.bitcoinstock
@@ -72,7 +72,7 @@ class Sell(commands.Cog):
           
         
         else:
-          await ctx.send("You don't have that many bitcoin, you can't sell them!")
+          await ctx.send("You don't have that many dogecoins, you can't sell them!")
         return
     
       if category == "apple":
@@ -128,7 +128,9 @@ async def open_account(user):
     users[str(user.id)]["gun"] = 0 
     users[str(user.id)]["btc"] = 0 
     users[str(user.id)]["apple"] = 0     
-    users[str(user.id)]["android"] = 0 
+    users[str(user.id)]["android"] = 0
+    users[str(user.id)]["medal"] = 0
+    users[str(user.id)]["coin"] = 0 
     
 
   with open("mainbank.json","w") as f:

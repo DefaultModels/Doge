@@ -53,11 +53,47 @@ class Buy(commands.Cog):
         else:
           await ctx.send(f"You don't have enough money to buy {amount} guns!")
         return
+
+      if category == "coin":
+        if wallet_amt >= amount * 500000:
+          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {amount} doge coins.")
+          em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/826907667909967892/Untitled_design__3_-removebg-preview.png")
+
+          users[str(user.id)]["coin"] += amount
+          users[str(user.id)]["wallet"] -= amount * 500000
+
+          await ctx.send(embed = em)
+
+          with open("mainbank.json","w") as f:
+            json.dump(users,f)
+          
         
-      if category == "btc":
+        else:
+          await ctx.send(f"You don't have enough money to buy {amount} coins!")
+        return
+
+      if category == "medal":
+        if wallet_amt >= amount * 1000000:
+          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {amount} doge medals.")
+          em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/826907664335241216/Untitled_design__2_-removebg-preview.png")
+
+          users[str(user.id)]["medal"] += amount
+          users[str(user.id)]["wallet"] -= amount * 1000000
+
+          await ctx.send(embed = em)
+
+          with open("mainbank.json","w") as f:
+            json.dump(users,f)
+          
+        
+        else:
+          await ctx.send(f"You don't have enough money to buy {amount} doge medals!")
+        return
+
+      if category == "doge":
         if wallet_amt >= amount * main.bitcoinstock:
-          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {amount} bitcoin for {amount * main.bitcoinstock} coins, sell on the stock market when you see profit. ```+sell btc```")
-          em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/823985123736551515/Bitcoin.png")
+          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {amount} dogecoin for {amount * main.bitcoinstock} coins, sell on the stock market when you see profit. ```+sell doge```")
+          em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/827206454648897576/dogecoin-cryptocurrency-dash-digital-currency-doge-removebg-preview.png")
 
           users[str(user.id)]["btc"] += amount
           users[str(user.id)]["wallet"] -= amount * main.bitcoinstock
@@ -69,7 +105,7 @@ class Buy(commands.Cog):
           
         
         else:
-          await ctx.send("You don't have enough money to buy that much bitcoin with the current stock prices!")
+          await ctx.send("You don't have enough money to buy that much dogecoin with the current stock prices!")
         return   
 
       if category == "apple":
@@ -126,7 +162,9 @@ async def open_account(user):
     users[str(user.id)]["apple"] = 0     
     users[str(user.id)]["android"] = 0 
     users[str(user.id)]["apple"] = 0     
-    users[str(user.id)]["android"] = 0 
+    users[str(user.id)]["android"] = 0
+    users[str(user.id)]["medal"] = 0
+    users[str(user.id)]["coin"] = 0 
  
 
   with open("mainbank.json","w") as f:

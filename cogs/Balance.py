@@ -25,11 +25,13 @@ class Balance(commands.Cog):
         bank_with_commas = "{:,}".format(bank_amt)
         bankmax_with_commas = "{:,}".format(bankmax_amt)
         net_worth_with_commas = "{:,}".format(net_worth)
-
+        pfp = user.avatar_url
         em = discord.Embed(title = f"{ctx.author.name}'s balance",color = discord.Color.from_rgb(47, 49, 54), description = f"**Wallet:** {wallet_with_commas} coins \n**Bank:** {bank_with_commas} / {bankmax_with_commas} coins \n**Net Worth:** {net_worth_with_commas} coins")
+        em.set_thumbnail(url=pfp)
         await ctx.send(embed = em)
 
       else:
+        await open_account(mention)
         wallet_amt = users[str(mention.id)]["wallet"]
         bank_amt = users[str(mention.id)]["bank"]
         bankmax_amt = users[str(mention.id)]["bankmax"]
@@ -40,7 +42,9 @@ class Balance(commands.Cog):
         bankmax_with_commas = "{:,}".format(bankmax_amt)
         net_worth_with_commas = "{:,}".format(net_worth)
 
+        pfp = mention.avatar_url
         em = discord.Embed(title = f"{mention}'s balance",color = discord.Color.from_rgb(47, 49, 54), description = f"**Wallet:** {wallet_with_commas} coins \n**Bank:** {bank_with_commas} / {bankmax_with_commas} coins \n**Net Worth:** {net_worth_with_commas} coins")
+        em.set_thumbnail(url=pfp)
         await ctx.send(embed=em)
 
       
@@ -62,7 +66,9 @@ async def open_account(user):
     users[str(user.id)]["gun"] = 0 
     users[str(user.id)]["btc"] = 0 
     users[str(user.id)]["apple"] = 0     
-    users[str(user.id)]["android"] = 0 
+    users[str(user.id)]["android"] = 0
+    users[str(user.id)]["medal"] = 0
+    users[str(user.id)]["coin"] = 0 
  
 
   with open("mainbank.json","w") as f:

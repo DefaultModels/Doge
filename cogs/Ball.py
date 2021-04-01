@@ -12,7 +12,7 @@ class Ball(commands.Cog):
         self.bot = bot
 
     @commands.command(aliases = ["8ball"])
-    async def ball(ctx):
+    async def ball(self, ctx):
 
       response = "Yes","No","Probably","Very doubtful"
 

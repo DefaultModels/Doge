@@ -18,13 +18,14 @@ class Stock(commands.Cog):
 
       if category == None:
         em = discord.Embed(title = "Stocks",color = discord.Color.from_rgb(47, 49, 54),description = f"**Amount Of Stocks Owned:** {btc_amt + android_amt + apple_amt} \n **Total Current Sale/Buy Price:** {main.bitcoinstock + main.applestock + main.androidstock} coins \n**Total Inventory Value:** {btc_amt * main.bitcoinstock + apple_amt * main.applestock + android_amt * main.androidstock} \n ")
+        em.set_thumbnail(url="https://compote.slate.com/images/926e5009-c10a-48fe-b90e-fa0760f82fcd.png?width=1200&rect=680x453&offset=0x30")
         em.add_field(name=":link: Quick Links",value="[Vote For Me](https://top.gg/bot/785160383560286240/vote) - [Invite Me](https://discord.com/oauth2/authorize?client_id=785160383560286240&scope=bot&permissions=2147483647) - [Support Server](https://discord.gg/3d6BpRHvbR) - [Premium/Donate](https://donatebot.io/checkout/794412631543906365)", inline=False)
         await ctx.send(embed = em)
         return
 
-      if category == "btc":
-        em = discord.Embed(title = "Bitcoin",color = discord.Color.from_rgb(47, 49, 54),description = f"Buy bitcoin from the stock market and sell it. [What is bitcoin?](https://en.wikipedia.org/wiki/Bitcoin). \n \n **Amount Owned:** {btc_amt} \n **Current Sale/Buy Price:** {main.bitcoinstock} coins \n**Inventory Value:** {btc_amt * main.bitcoinstock} \n ")
-        em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/823985123736551515/Bitcoin.png")
+      if category == "doge":
+        em = discord.Embed(title = "Dogecoin",color = discord.Color.from_rgb(47, 49, 54),description = f"Buy dogecoin from the stock market and sell it. [What is dogecoin?](https://en.wikipedia.org/wiki/Dogecoin). \n \n **Amount Owned:** {btc_amt} \n **Current Sale/Buy Price:** {main.bitcoinstock} coins \n**Inventory Value:** {btc_amt * main.bitcoinstock} \n ")
+        em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/827206454648897576/dogecoin-cryptocurrency-dash-digital-currency-doge-removebg-preview.png")
         em.add_field(name=":link: Quick Links",value="[Vote For Me](https://top.gg/bot/785160383560286240/vote) - [Invite Me](https://discord.com/oauth2/authorize?client_id=785160383560286240&scope=bot&permissions=2147483647) - [Support Server](https://discord.gg/3d6BpRHvbR) - [Premium/Donate](https://donatebot.io/checkout/794412631543906365)", inline=False)
         await ctx.send(embed = em)
         return
