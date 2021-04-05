@@ -17,13 +17,15 @@ class Sell(commands.Cog):
       btc_amt = users[str(user.id)]["btc"]
       apple_amt = users[str(user.id)]["apple"]
       android_amt = users[str(user.id)]["android"]
+      a = "{:,}".format(amount)
       if category == None:
         await ctx.send("Please specify the item you would like to buy.")
         return
 
       if category == "laptop":
         if laptop_amt >= amount:
-          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You sold {amount} laptop for {amount * 1000} coins.")
+          b = "{:,}".format(amount * 1000)
+          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You sold {a} laptop for {b} coins.")
           em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/823539841089404988/1447_laptop.png")
 
           users[str(user.id)]["laptop"] -= amount
@@ -41,7 +43,8 @@ class Sell(commands.Cog):
 
       if category == "gun":
         if gun_amt >= amount:
-          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You sold {amount} guns for {amount * 2500} coins.")
+          b = "{:,}".format(amount * 2500)
+          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You sold {a} guns for {b} coins.")
           em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/823900235649777684/1426_pistol.png")
 
           users[str(user.id)]["gun"] -= amount
@@ -59,7 +62,8 @@ class Sell(commands.Cog):
 
       if category == "doge":
         if btc_amt >= amount:
-          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You sold {amount} bitcoin for {amount * main.bitcoinstock} coins.")
+          b = "{:,}".format(amount * main.bitcoinstock)
+          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You sold {a} bitcoin for {b} coins.")
           em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/827206454648897576/dogecoin-cryptocurrency-dash-digital-currency-doge-removebg-preview.png")
 
           users[str(user.id)]["btc"] -= amount
@@ -77,10 +81,11 @@ class Sell(commands.Cog):
     
       if category == "apple":
         if apple_amt >= amount:
-          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You sold {amount} apple stock for {amount * main.applestock} coins.")
+          b = "{:,}".format(amount * main.applestock)
+          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You sold {a} apple stock for {b} coins.")
           em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/824035108972658728/1515_phone_with_apple.png")
 
-          users[str(user.id)]["apple"] -=amount
+          users[str(user.id)]["apple"] -= amount
           users[str(user.id)]["wallet"] += amount * main.applestock
 
           await ctx.send(embed = em)
@@ -95,7 +100,8 @@ class Sell(commands.Cog):
 
       if category == "android":
         if android_amt >= amount:
-          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You sold {amount} android stock for {amount * main.androidstock} coins.")
+          b = "{:,}".format(amount * main.androidstock)
+          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You sold {a} android stock for {b} coins.")
           em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/824035104258261022/1546_phone_with_android.png")
 
           users[str(user.id)]["android"] -= amount

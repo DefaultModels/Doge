@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import main
 import json
+
 class Stock(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -31,7 +32,7 @@ class Stock(commands.Cog):
         return
 
       if category == "apple":
-        em = discord.Embed(title = "Apple Stock",color = discord.Color.from_rgb(47, 49, 54),description = f"Buy apple from the stock market and sell it. [What is apple?](https://en.wikipedia.org/wiki/Apple_Inc.). \n \n **Amount Owned:** {apple_amt} \n **Current Sale/Buy Price:** {main.bitcoinstock} coins \n**Inventory Value:** {apple_amt * main.applestock} \n ")
+        em = discord.Embed(title = "Apple Stock",color = discord.Color.from_rgb(47, 49, 54),description = f"Buy apple from the stock market and sell it. [What is apple?](https://en.wikipedia.org/wiki/Apple_Inc.). \n \n **Amount Owned:** {apple_amt} \n **Current Sale/Buy Price:** {main.applestock} coins \n**Inventory Value:** {apple_amt * main.applestock} \n ")
         em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/824035108972658728/1515_phone_with_apple.png")
         em.add_field(name=":link: Quick Links",value="[Vote For Me](https://top.gg/bot/785160383560286240/vote) - [Invite Me](https://discord.com/oauth2/authorize?client_id=785160383560286240&scope=bot&permissions=2147483647) - [Support Server](https://discord.gg/3d6BpRHvbR) - [Premium/Donate](https://donatebot.io/checkout/794412631543906365)", inline=False)
         await ctx.send(embed = em)

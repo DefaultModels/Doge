@@ -19,8 +19,9 @@ class Buy(commands.Cog):
         return
 
       if category == "laptop":
+        a = "{:,}".format(amount)
         if wallet_amt >= amount * 2000:
-          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {amount} laptops and you can now postmemes on reddit for coins. ```+postmemes```")
+          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {a} laptops and you can now postmemes on reddit for coins. ```+postmemes```")
           em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/823539841089404988/1447_laptop.png")
 
           users[str(user.id)]["laptop"] += amount
@@ -33,12 +34,13 @@ class Buy(commands.Cog):
           
         
         else:
-          await ctx.send(f"You don't have enough money to buy {amount} laptops!")
+          await ctx.send(f"You don't have enough money to buy {a} laptops!")
         return
 
       if category == "gun":
+        a = "{:,}".format(amount)
         if wallet_amt >= amount * 5000:
-          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {amount} guns and you can now rob other players for coins. ```+rob MENTION```")
+          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {a} guns and you can now rob other players for coins. ```+rob MENTION```")
           em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/823900235649777684/1426_pistol.png")
 
           users[str(user.id)]["gun"] += amount
@@ -51,12 +53,13 @@ class Buy(commands.Cog):
           
         
         else:
-          await ctx.send(f"You don't have enough money to buy {amount} guns!")
+          await ctx.send(f"You don't have enough money to buy {a} guns!")
         return
 
       if category == "coin":
+        a = "{:,}".format(amount)
         if wallet_amt >= amount * 500000:
-          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {amount} doge coins.")
+          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {a} doge coins.")
           em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/826907667909967892/Untitled_design__3_-removebg-preview.png")
 
           users[str(user.id)]["coin"] += amount
@@ -69,12 +72,13 @@ class Buy(commands.Cog):
           
         
         else:
-          await ctx.send(f"You don't have enough money to buy {amount} coins!")
+          await ctx.send(f"You don't have enough money to buy {a} coins!")
         return
 
       if category == "medal":
+        a = "{:,}".format(amount)
         if wallet_amt >= amount * 1000000:
-          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {amount} doge medals.")
+          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {a} doge medals.")
           em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/826907664335241216/Untitled_design__2_-removebg-preview.png")
 
           users[str(user.id)]["medal"] += amount
@@ -87,12 +91,14 @@ class Buy(commands.Cog):
           
         
         else:
-          await ctx.send(f"You don't have enough money to buy {amount} doge medals!")
+          await ctx.send(f"You don't have enough money to buy {a} doge medals!")
         return
 
       if category == "doge":
+        a = "{:,}".format(amount)
         if wallet_amt >= amount * main.bitcoinstock:
-          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {amount} dogecoin for {amount * main.bitcoinstock} coins, sell on the stock market when you see profit. ```+sell doge```")
+          b = "{:,}".format(amount * main.bitcoinstock)
+          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {a} dogecoin for {b} coins, sell on the stock market when you see profit. ```+sell doge```")
           em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/827206454648897576/dogecoin-cryptocurrency-dash-digital-currency-doge-removebg-preview.png")
 
           users[str(user.id)]["btc"] += amount
@@ -109,8 +115,10 @@ class Buy(commands.Cog):
         return   
 
       if category == "apple":
+        a = "{:,}".format(amount)
+        b = "{:,}".format(amount * main.applestock)
         if wallet_amt >= amount * main.applestock:
-          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {amount} apple stock for {amount * main.applestock} coins, sell it on the stock market when you see profit. ```+sell apple```")
+          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {a} apple stock for {b} coins, sell it on the stock market when you see profit. ```+sell apple```")
           em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/824035108972658728/1515_phone_with_apple.png")
 
           users[str(user.id)]["apple"] += amount
@@ -127,8 +135,10 @@ class Buy(commands.Cog):
         return   
 
       if category == "android":
+        a = "{:,}".format(amount)
+        b = "{:,}".format(amount * main.androidstock)
         if wallet_amt >= amount * main.androidstock:
-          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {amount} android stock for {amount * main.androidstock} coins, sell it on the stock market when you see profit. ```+sell android```")
+          em = discord.Embed(title = "Transaction successful",color = discord.Color.from_rgb(47, 49, 54),description = f"You bought {a} android stock for {b} coins, sell it on the stock market when you see profit. ```+sell android```")
           em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/824035104258261022/1546_phone_with_android.png")
 
           users[str(user.id)]["android"] += amount
@@ -138,7 +148,6 @@ class Buy(commands.Cog):
 
           with open("mainbank.json","w") as f:
             json.dump(users,f)
-          
         
         else:
           await ctx.send("You don't have enough money to buy that much android stocks with the current stock prices!")

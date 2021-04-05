@@ -35,10 +35,16 @@ class Rob(commands.Cog):
 
               elif event == 2:
                 loss = payout
-                await ctx.send(f"{ctx.author.mention}, you were caught by {mention} and had to pay a {loss} coin fine.")
 
-                users[str(user.id)]["wallet"] -= loss
-                users[str(mention.id)]["wallet"] += loss
+                if loss > wallet_amt:
+                  await ctx.send(f"{ctx.author.mention}, you were caught by {mention} and had to pay a {wallet_amt} coin fine.")
+                  users[str(user.id)]["wallet"] -= wallet_amt
+                  users[str(mention.id)]["wallet"] += wallet_amt
+
+                else:
+                  await ctx.send(f"{ctx.author.mention}, you were caught by {mention} and had to pay a {loss} coin fine.")
+                  users[str(user.id)]["wallet"] -= loss
+                  users[str(mention.id)]["wallet"] += loss
 
               with open("mainbank.json","w") as f:
                 json.dump(users,f)
