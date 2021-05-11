@@ -53,7 +53,6 @@ async def unload(ctx, *, name: str):
 		return await ctx.send(e)
 	await ctx.send(f'"**{name}**" Cog unloaded')
 
-
 # -------------------------------------------------
 
 async def stocks():
@@ -70,6 +69,7 @@ async def stocks():
 		BotMessage = await channel.send(
 		    content=
 		    f"<:DogecoinCrypto:827207281941676043> Dogecoin Stock: {bitcoinstock} \n       ID: `doge` \n \n<:Android:824035438078853130> Android Stock: {androidstock} \n       ID: `android` \n \n<:Apple:824035438141505596> Apple: {applestock} \n       ID: `apple`"
+        
 		)
 		await asyncio.sleep(75)
 		await BotMessage.delete()
@@ -80,7 +80,7 @@ async def on_ready():
 	await bot.change_presence(activity=discord.Streaming(
 	    name=f"+help - {len(bot.guilds)} servers - dsc.gg/dogeofficial - dsc.gg/dogeinvite",
 	    url="https://www.twitch.tv/defaultmodels"))
-	print('Bot is online')
+	print(f'Bot is online in {len(bot.guilds)}')
 	await stocks()
 
 
