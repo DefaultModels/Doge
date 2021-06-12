@@ -7,7 +7,7 @@ class Premium(commands.Cog):
 
     @commands.command()
     async def premium(self, ctx):
-      em = discord.Embed(title = "Premium [Beta]",color = discord.Color.from_rgb(255,255,0), description = "Buy premium for exclusive commands, premium giveaways and donor role and giveaways for LIFE (In the official server)!")
+      em = discord.Embed(title = "Premium [Beta]",color = discord.Color.from_rgb(255,255,0), description =" Buy premium for exclusive commands, premium giveaways and donor role and giveaways for LIFE (In the official server)! \n \n \n \n (Don't worry it's not a scam, I'm an unpaid dev please help me this is a cry for help my location is-)")
       em.add_field(name="Commands", value="```Gig```")
       em.add_field(name="Features", value="```Anti-rob Shield```")
       em.set_thumbnail(url="https://cdn.discordapp.com/attachments/796440127857229855/822959294504501268/ZzU5QyqU-removebg-preview.png")

@@ -35,6 +35,7 @@ class Help(commands.Cog):
         return
 
       if category == "pay":
+        em = discord.Embed(title = "Pay command",color = discord.Color.from_rgb(47, 49, 54),description = "Pay a user a set amount of money. ```+pay @MENTION AMOUNT```")
         em.add_field(name=":link: Quick Links",value="[Vote For Me](https://top.gg/bot/785160383560286240/vote) - [Invite Me](https://discord.com/oauth2/authorize?client_id=785160383560286240&scope=bot&permissions=2147483647) - [Support Server](https://discord.gg/3d6BpRHvbR) - [Premium/Donate](https://donatebot.io/checkout/794412631543906365)", inline=False)
         await ctx.send(embed = em)
         return

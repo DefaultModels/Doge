@@ -13,6 +13,12 @@ class Inventory(commands.Cog):
       users = await get_bank_data()
 
       if mention == None:
+        gun_bool = False
+        laptop_bool = False
+        coin_bool = False
+        medal_bool = False
+
+
         guns = users[str(user.id)]["gun"]
         laptops = users[str(user.id)]["laptop"]
         coins = users[str(user.id)]["coin"]

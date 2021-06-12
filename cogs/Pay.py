@@ -11,6 +11,7 @@ class Pay(commands.Cog):
     @commands.cooldown(1, 5, commands.BucketType.user)
     async def pay(self, ctx, mention: discord.User, amount = 0):
       await open_account(ctx.author)
+      await open_account(mention)
       user = ctx.author
       users = await get_bank_data()
 
@@ -27,7 +28,7 @@ class Pay(commands.Cog):
     @pay.error
     async def pay_cooldown(self, ctx, error):
       if isinstance(error, commands.CommandOnCooldown):
-        await ctx.send("You're going on a spending spree. The default cooldown for this command is `5s`.")
+        await ctx.send("You're going on a giving rampage. The default cooldown for this command is `5s`.")
 
 
 async def open_account(user):

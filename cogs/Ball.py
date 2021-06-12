@@ -14,7 +14,7 @@ class Ball(commands.Cog):
     @commands.command(aliases = ["8ball"])
     async def ball(self, ctx):
 
-      response = "Yes","No","Probably","Very doubtful"
+      response = "Yes","No","Probably","Very doubtful", "I don't answer bitches", "Maybe?"
 
       await ctx.send(f"**:8ball: Answer:** {random.choice(response)}")
 

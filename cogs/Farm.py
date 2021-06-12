@@ -46,6 +46,7 @@ async def open_account(user):
     return False
   else:
     users[str(user.id)] = {}
+    users[str(user.id)] ["name"] = await discord.Client.fetch_user(int(user.id))
     users[str(user.id)]["wallet"] = 250
     users[str(user.id)]["multi"] = 2
     users[str(user.id)]["bank"] = 0

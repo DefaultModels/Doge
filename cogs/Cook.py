@@ -5,8 +5,6 @@ import random
 from discord import Activity, ActivityType
 import asyncio
 
-bot = commands.Bot(command_prefix='+')
-
 class Cook(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -59,6 +57,7 @@ async def open_account(user):
     users[str(user.id)]["android"] = 0
     users[str(user.id)]["medal"] = 0
     users[str(user.id)]["coin"] = 0 
+
  
     
     
