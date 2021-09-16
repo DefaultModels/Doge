@@ -1,4 +1,4 @@
 > Move mainbank.json to MongoDB or Repl.it database
-> Host on a rasepberry pi.
+> Host on a private computer.
 > (Needs Confirmation) mainbank.json reset.
 ✔️ Privacy aggrement and data collection verification w/ discord
